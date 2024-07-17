@@ -32,14 +32,24 @@ let ProductsService = class ProductsService {
     async create(product) {
         return this.productRepository.save(product);
     }
-    async update(id, product) {
-        await this.productRepository.update(id, product);
-        return this.productRepository.findOne({
-            where: { id },
+    async update(product) {
+        const productToUpdate = await this.productRepository.findOne({
+            where: { id: product.id },
         });
+        if (!productToUpdate) {
+            throw new common_1.BadRequestException("Product not found");
+        }
+        return await this.productRepository.save(Object.assign(Object.assign({}, productToUpdate), product));
     }
     async delete(id) {
+        const productToDelete = await this.productRepository.findOne({
+            where: { id },
+        });
+        if (!productToDelete) {
+            throw new common_1.BadRequestException("Product not found");
+        }
         await this.productRepository.delete(id);
+        return productToDelete;
     }
 };
 ProductsService = __decorate([
