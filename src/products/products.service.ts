@@ -24,15 +24,4 @@ export class ProductsService {
   async create(product: CreateProductDto): Promise<ProductEntity> {
     return this.productRepository.save(product);
   }
-
-  async update(id: string, product: CreateProductDto): Promise<ProductEntity> {
-    await this.productRepository.update(id, product);
-    return this.productRepository.findOne({
-      where: { id },
-    });
-  }
-
-  async delete(id: string): Promise<void> {
-    await this.productRepository.delete(id);
-  }
 }
