@@ -30,16 +30,31 @@ let ProductsService = class ProductsService {
         });
     }
     async create(product) {
+        const existingProduct = await this.productRepository.findOne({
+            where: { name: product.name },
+        });
+        if (existingProduct) {
+            throw new common_1.BadRequestException("Product already exists");
+        }
         return this.productRepository.save(product);
     }
     async update(id, product) {
-        await this.productRepository.update(id, product);
-        return this.productRepository.findOne({
+        await this.findProductById(id);
+        return this.productRepository.save(Object.assign(Object.assign({}, product), { id }));
+    }
+    async remove(id) {
+        await this.findProductById(id);
+        const isDeleted = await this.productRepository.delete(id);
+        return isDeleted.affected > 0;
+    }
+    async findProductById(id) {
+        const product = await this.productRepository.findOne({
             where: { id },
         });
-    }
-    async delete(id) {
-        await this.productRepository.delete(id);
+        if (!product) {
+            throw new common_1.BadRequestException("Product not found");
+        }
+        return product;
     }
 };
 ProductsService = __decorate([

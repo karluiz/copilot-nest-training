@@ -8,5 +8,6 @@ export declare class ProductsService {
     findOne(id: string): Promise<ProductEntity>;
     create(product: CreateProductDto): Promise<ProductEntity>;
     update(id: string, product: CreateProductDto): Promise<ProductEntity>;
-    delete(id: string): Promise<void>;
+    remove(id: string): Promise<boolean>;
+    private findProductById;
 }
