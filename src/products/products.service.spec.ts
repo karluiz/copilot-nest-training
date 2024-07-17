@@ -1,4 +1,3 @@
-// src/products/products.service.spec.ts
 import { Test, TestingModule } from "@nestjs/testing";
 import { getRepositoryToken } from "@nestjs/typeorm";
 import { ProductEntity } from "./entities/product.entity";
