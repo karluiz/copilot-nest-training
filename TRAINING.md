@@ -20,6 +20,11 @@ ghcs "how to run a postgres using docker in my local"
 ghcs "how to run a nest project"
 ```
 
+- To check if database is up and use Datagrip or DBeaver to connect to the database
+
+[dbeaber](https://dbeaver.io/download/)
+[datagrip](https://www.jetbrains.com/datagrip/download/)
+
 ## GH CLI not installed show how to install it using the Cheat Sheet
 
 [Copilot Sheat Sheets](https://l.ndrz.io/2hQbRp) 
